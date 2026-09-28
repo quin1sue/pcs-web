@@ -10,7 +10,7 @@
                         alt="Pixel Code &amp; Society"
                         class="site-logo-img"
                         onerror="this.style.display='none'">
-                    <span class="font-black text-sm tracking-widest text-slate-900 uppercase hidden sm:block" aria-hidden="true">PCS</span>
+                    <span class="font-black text-sm tracking-widest text-slate-900 uppercase hidden sm:block" aria-hidden="true">Pixel & Code Society</span>
                 </a>
             </div>
 
