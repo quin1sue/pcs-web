@@ -3,20 +3,30 @@
     <aside class="org-artifacts" aria-hidden="true">
         <img src="public/assets/images/logo/tux.png"
             alt=""
-            class="org-artifact org-artifact--tux px-drift-b"
+            class="org-artifact org-artifact--tux"
             loading="lazy">
         <img src="public/assets/images/logo/gopher.png"
             alt=""
-            class="org-artifact org-artifact--gopher px-drift-a"
+            class="org-artifact org-artifact--gopher"
             loading="lazy">
         <img src="public/assets/images/logo/photoshop-r.png"
             alt=""
-            class="org-artifact org-artifact--photoshop px-drift-c"
+            class="org-artifact org-artifact--photoshop"
             loading="lazy">
 
-        <!-- L-bracket pixel corner marks -->
+        <!-- L-bracket pixel corner marks (full technical frame) -->
         <span class="org-mark org-mark--tl"></span>
+        <span class="org-mark org-mark--tr"></span>
+        <span class="org-mark org-mark--bl"></span>
         <span class="org-mark org-mark--br"></span>
+
+        <!-- Pixel cluster details around the chart -->
+        <div class="px-cluster hidden md:block"                     style="top:22%; right:9%;"></div>
+        <div class="px-cluster px-cluster--sm px-cluster--cyan px-cluster--d1 hidden lg:block" style="top:36%; left:12%;"></div>
+        <div class="px-cluster px-cluster--cyan px-cluster--sm px-cluster--d2 hidden lg:block" style="bottom:16%; right:14%;"></div>
+        <div class="px-dot px-dot--lg px-drift-b d1 hidden md:block" style="top:14%; right:22%;"></div>
+        <div class="px-dot px-dot--cyan px-drift-a d3 hidden md:block" style="bottom:9%; left:18%;"></div>
+        <div class="px-star px-star--navy px-star--sm px-star--d1 hidden md:block" style="top:64%; right:7%;"></div>
     </aside>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

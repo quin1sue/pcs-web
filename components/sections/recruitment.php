@@ -1,6 +1,14 @@
-<section id="join" class="py-32 bg-slate-900 border-b-8 border-blue-600 relative overflow-hidden">
+<section id="join" class="py-32 bg-slate-900 border-b-8 border-blue-600 relative overflow-hidden side-env side-env--dark">
     <!-- Floating pixel decorations -->
     <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 4px, transparent 4px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 4px, transparent 4px); background-size: 64px 64px;"></div>
+
+    <!-- Pixel stars: closing environment -->
+    <div class="px-star" aria-hidden="true" style="top:16%; left:12%;"></div>
+    <div class="px-star px-star--lg px-star--d1" aria-hidden="true" style="top:24%; right:10%;"></div>
+    <div class="px-star px-star--sm px-star--d2" aria-hidden="true" style="bottom:20%; left:20%;"></div>
+    <div class="px-star px-star--sm px-star--blue px-star--d1" aria-hidden="true" style="bottom:14%; right:22%;"></div>
+    <div class="px-dot px-dot--cyan px-drift-a d2" aria-hidden="true" style="top:48%; left:5%;"></div>
+    <div class="px-dot px-drift-b d1" aria-hidden="true" style="top:58%; right:6%;"></div>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
         <div class="inline-block bg-blue-600 text-white font-black px-4 py-2 mb-8 pixel-border uppercase tracking-widest text-sm transform -rotate-2">

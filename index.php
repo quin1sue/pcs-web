@@ -22,12 +22,12 @@ require __DIR__ . '/data/site-data.php';
 
     <?php require __DIR__ . '/components/ui/division-org-modal.php'; ?>
     <!-- Nyan PCS companion — decorative floating mascot, pointer-events:none -->
-    <img id="nyan-pcs"
-         src="public/assets/images/logo/nyan-pcs-extended.png"
-         alt=""
-         class="nyan-companion"
-         aria-hidden="true"
-         loading="lazy">
+    <div id="nyan-pcs" class="nyan-companion" aria-hidden="true">
+        <img src="public/assets/images/logo/nyan-pcs-extended.png"
+             alt=""
+             class="nyan-companion-img"
+             loading="lazy">
+    </div>
 
     <script src="public/assets/js/main.js"></script>
 </body>

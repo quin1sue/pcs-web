@@ -1,4 +1,4 @@
-<section id="experience" class="py-24 bg-white border-b-4 border-slate-900 overflow-hidden section-atm section-atm--grid section-atm--ruled">
+<section id="experience" class="py-24 bg-white border-b-4 border-slate-900 overflow-hidden section-atm side-env">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-20 text-center reveal">
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase mb-4 pixel-panel inline-block px-6 py-2 bg-slate-100">
@@ -46,4 +46,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Ambient decoration -->
+    <div class="px-star px-star--blue px-star--sm" aria-hidden="true" style="top:12%; right:7%;"></div>
+    <div class="px-cluster px-cluster--sm px-cluster--d2" aria-hidden="true" style="bottom:10%; left:8%;"></div>
+    <div class="px-dot px-dot--cyan px-drift-b d1" aria-hidden="true" style="top:52%; left:2.5%;"></div>
 </section>

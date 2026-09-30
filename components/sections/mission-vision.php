@@ -1,5 +1,5 @@
 <section class="py-24 bg-blue-50 border-b-4 border-slate-900 section-atm section-atm--corners">
-    <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 side-env">
 
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 list-none p-0 m-0">
             <!-- Mission Card -->
@@ -30,4 +30,8 @@
             </li>
         </ul>
     </article>
+
+    <!-- Ambient decoration -->
+    <div class="px-dot px-dot--navy px-drift-c d2" aria-hidden="true" style="top:18%; right:6%;"></div>
+    <div class="px-star px-star--blue px-star--sm px-star--d1" aria-hidden="true" style="bottom:14%; left:6%;"></div>
 </section>

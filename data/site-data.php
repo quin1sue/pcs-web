@@ -55,13 +55,3 @@ $journey = [
     ['num' => '04', 'title' => 'Share', 'desc' => 'Present ideas, collaborate with other divisions, and contribute your work to the community.'],
     ['num' => '05', 'title' => 'Grow', 'desc' => 'Build confidence, deepen your expertise, expand your network, and strengthen your portfolio.'],
 ];
-
-// mock data
-// $people = [
-//     ['name' => 'Alex Turner', 'role' => 'President', 'avatar' => '/public/assets/images/placeholder.png'],
-//     ['name' => 'Sam Rivers', 'role' => 'VP Programming', 'avatar' => '/public/assets/images/placeholder.png'],
-//     ['name' => 'Jordan Casey', 'role' => 'VP Cybersecurity', 'avatar' => '/public/assets/images/placeholder.png'],
-//     ['name' => 'Taylor Morgan', 'role' => 'VP Infrastructure', 'avatar' => '/public/assets/images/placeholder.png'],
-//     ['name' => 'Casey Smith', 'role' => 'VP Multimedia', 'avatar' => '/public/assets/images/placeholder.png'],
-//     ['name' => 'Jamie Doe', 'role' => 'VP Communications', 'avatar' => '/public/assets/images/placeholder.png'],
-// ];

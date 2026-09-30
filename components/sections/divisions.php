@@ -1,4 +1,4 @@
-<section id="discover" class="py-24 bg-white border-b-4 border-slate-900 section-atm section-atm--ruled">
+<section id="discover" class="py-24 bg-white border-b-4 border-slate-900 section-atm side-env">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-16">
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter mb-4 pixel-panel inline-block px-4 py-2 bg-blue-100">
@@ -36,4 +36,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Ambient decoration -->
+    <div class="px-star px-star--navy px-star--d1" aria-hidden="true" style="top:10%; right:5%;"></div>
+    <div class="px-cluster px-cluster--cyan px-cluster--sm px-cluster--d1" aria-hidden="true" style="bottom:8%; right:9%;"></div>
+    <div class="px-dot px-drift-a d3" aria-hidden="true" style="top:46%; left:3%;"></div>
 </section>

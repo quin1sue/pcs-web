@@ -275,140 +275,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!customElements.get('pcs-logo')) customElements.define('pcs-logo', PcsLogo);
 })();
-// ─── Nyan PCS Companion ────────────────────────────────────
+// ─── Nyan PCS Companion — section-aware flight ────────────
+// One fixed element; JS only writes `transform` (the CSS `nyan-bob`
+// keyframes animate `margin-top`, so they compose, never conflict).
+// Scroll → rAF-throttled waypoint resolution → lerped flight loop.
 (() => {
     const nyan = document.getElementById('nyan-pcs');
     if (!nyan) return;
 
-    // Respect reduced motion: leave nyan parked off-screen
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        nyan.style.display = 'none';
-        return;
+    // Reduced motion: CSS parks the mascot statically; JS stays out
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Sections Nyan visits, in page order
+    const sectionIds = ['identity', 'organization', 'discover', 'experience', 'showcase', 'join'];
+    const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+    if (sections.length === 0) return;
+
+    const VW  = () => window.innerWidth;
+    const VH  = () => window.innerHeight;
+    const NW  = () => nyan.offsetWidth || 120;
+    const NH  = () => nyan.offsetHeight || 80;
+
+    // Deterministic per-section variation (no randomness → stable flights)
+    const sideFor    = i => (i % 2 === 0 ? 1 : -1);            // 1 right, -1 left
+    const bandPctFor = i => (((i * 37) % 21) - 10);            // −10 … +10 (percent of VH)
+
+    // Waypoint for section i, in *fixed-viewport* coordinates
+    function waypoint(i) {
+        const gap = VW() < 768 ? 10 : 26;
+        const x = sideFor(i) === 1 ? VW() - NW() - gap : gap;
+        const y = clampY((VH() * (50 + bandPctFor(i)) / 100) - NH() / 2);
+        return { x, y };
     }
 
-    const VW = () => window.innerWidth;
-    const VH = () => window.innerHeight;
+    function clampY(y) {
+        const min = 80;
+        const max = Math.max(min, VH() - NH() - 90);
+        return Math.min(max, Math.max(min, y));
+    }
 
-    // Nyan travels across 4 "lanes" of Y position (as % of viewport)
-    // It picks a new lane when it crosses a section boundary
-    const lanes = [0.15, 0.28, 0.55, 0.72];
-    let laneIndex = 0;
+    // Section midpoints in document space (read in one batch)
+    let centers = [];
+    function measure() {
+        const sy = window.scrollY;
+        centers = sections.map(el => {
+            const r = el.getBoundingClientRect();
+            return r.top + sy + r.height / 2;
+        });
+    }
 
-    // Current and target state
-    let curX = -160;          // px, off-screen left
-    let curY = VH() * lanes[0];
-    let targetX = -160;
-    let targetY = curY;
-    let heading = 1;          // 1 = right, -1 = left (flip image)
+    let activeIndex = -1;
+    let targetX = -NW() * 2;
+    let targetY = VH() * 0.3;
+    let curX = targetX;
+    let curY = targetY;
+    let heading = 1;
     let rafId = null;
-    let scrollY = window.scrollY;
-    let lastScrollY = scrollY;
-    let scrollDelta = 0;
+    let idleFrames = 0;
     let ticking = false;
 
-    // How wide nyan is (matches CSS)
-    const nyanW = () => nyan.offsetWidth || 120;
-
-    // Map scroll position → a target X across the viewport
-    function calcTargetX(sy) {
-        const maxScroll = Math.max(1, document.body.scrollHeight - VH());
-        const progress = Math.min(1, sy / maxScroll);
-        // Nyan makes ~3 full passes across the viewport as user scrolls
-        const passes = 3;
-        const cycle = (progress * passes) % 1;
-        // Odd passes go right→left, even go left→right
-        const pass = Math.floor(progress * passes);
-        const goingRight = pass % 2 === 0;
-
-        if (goingRight) {
-            return -nyanW() + cycle * (VW() + nyanW() * 2);
-        } else {
-            return VW() + nyanW() - cycle * (VW() + nyanW() * 2);
+    function retarget(scrollEased) {
+        // Which section is the user currently looking at?
+        const viewMid = scrollEased + VH() / 2;
+        let idx = 0;
+        for (let i = 0; i < centers.length; i++) {
+            if (centers[i] <= viewMid) idx = i;
         }
+
+        // Sections already flown past: snap them (they are offscreen anyway)
+        if (idx !== activeIndex) {
+            for (let i = Math.max(0, idx - 1); i < idx; i++) {
+                const w = waypoint(i);
+                const flipped = sideFor(i) === -1 ? ' scaleX(-1)' : '';
+                if (i !== idx) {
+                    nyan.style.transform = `translate3d(${w.x.toFixed(1)}px, ${w.y.toFixed(1)}px, 0)${flipped}`;
+                    curX = w.x; curY = w.y;
+                }
+            }
+            activeIndex = idx;
+        }
+
+        const w = waypoint(activeIndex);
+        targetX = w.x;
+        targetY = w.y;
     }
 
-    // Pick a new Y lane occasionally (every ~20% of scroll progress)
-    let lastLaneChange = 0;
-    function maybeChangeLane(sy) {
-        const maxScroll = Math.max(1, document.body.scrollHeight - VH());
-        const progress = Math.min(1, sy / maxScroll);
-        const laneSegment = Math.floor(progress / 0.18);
-        if (laneSegment !== lastLaneChange) {
-            lastLaneChange = laneSegment;
-            // pick a different lane from current
-            let next = (laneIndex + 1 + Math.floor(Math.random() * (lanes.length - 1))) % lanes.length;
-            laneIndex = next;
-            targetY = VH() * lanes[laneIndex];
-        }
-    }
-
-    // RAF loop: only runs while scroll is happening + brief after
-    let idleFrames = 0;
     function tick() {
         const dx = targetX - curX;
         const dy = targetY - curY;
 
-        // Lerp: fast horizontal, slow vertical
-        curX += dx * 0.06;
-        curY += dy * 0.04;
+        // Velocity-proportional smoothing: quick to start, gentle arrival
+        const kx = Math.min(0.14, Math.max(0.045, Math.abs(dx) / 240));
+        curX += dx * kx;
+        curY += dy * 0.05;
 
-        // Flip horizontally based on movement direction
-        const moving = Math.abs(dx) > 0.5;
-        if (moving) {
-            heading = dx > 0 ? 1 : -1;
-        }
+        if (Math.abs(dx) > 1) heading = dx > 0 ? 1 : -1;
 
-        // Apply transform — no layout properties touched
         const flip = heading === -1 ? ' scaleX(-1)' : '';
         nyan.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0)${flip}`;
 
-        // Stop the loop when settled
-        if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+        if (Math.abs(targetX - curX) < 0.5 && Math.abs(targetY - curY) < 0.5) {
             idleFrames++;
-            if (idleFrames > 30) {
-                rafId = null;
-                return;
-            }
+            if (idleFrames > 40) { rafId = null; return; }   // park until next scroll
         } else {
             idleFrames = 0;
         }
-
         rafId = requestAnimationFrame(tick);
     }
 
     function startTick() {
-        if (!rafId) {
-            idleFrames = 0;
-            rafId = requestAnimationFrame(tick);
-        }
+        if (!rafId) { idleFrames = 0; rafId = requestAnimationFrame(tick); }
     }
 
-    // Scroll handler — throttled via ticking flag
-    function onScroll() {
+    function onScrollOrResize() {
         if (ticking) return;
         ticking = true;
         requestAnimationFrame(() => {
-            scrollY = window.scrollY;
-            scrollDelta = scrollY - lastScrollY;
-            lastScrollY = scrollY;
-
-            targetX = calcTargetX(scrollY);
-            maybeChangeLane(scrollY);
-
+            measure();
+            retarget(window.scrollY);
             ticking = false;
             startTick();
         });
     }
 
-    // Initial position: just off-screen left
-    nyan.style.top = '0';
-    nyan.style.left = '0';
-    nyan.style.transform = `translate3d(-160px, ${curY.toFixed(1)}px, 0)`;
-
-    // Listen
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Kick off on load so nyan is in the right spot
-    targetX = calcTargetX(window.scrollY);
+    // Boot: measure, place off-screen left of the first waypoint, fly in
+    measure();
+    const first = waypoint(0);
+    targetX = first.x; targetY = first.y;
+    curX = -NW() * 2; curY = first.y;
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
     startTick();
 })();
