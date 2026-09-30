@@ -1,48 +1,44 @@
 <section id="identity" class="relative bg-white overflow-hidden border-b-4 border-slate-900">
     <div class="hero-shell flex items-center pt-20 md:pt-16 pb-20">
 
-        <!-- ═══ Decorative background environment (aria-hidden) ═══ -->
+        <!--  Decorative background environment (aria-hidden)  -->
         <aside class="hero-environment" aria-hidden="true">
 
-            <!-- Grid fragments: partial technical grid areas near edges -->
-            <div class="hero-grid-patch hero-grid-patch--a"></div>
-            <div class="hero-grid-patch hero-grid-patch--b"></div>
+            <span class="hero-grid-patch hero-grid-patch--a block"></span>
+            <span class="hero-grid-patch hero-grid-patch--b block"></span>
 
-            <!-- ── Upper-left quadrant ── -->
-            <div class="px-cluster hidden md:block"                 style="top:12%; left:5%;"></div>
-            <div class="px-cluster px-cluster--sm px-cluster--cyan px-cluster--d1 hidden md:block" style="top:26%; left:12%;"></div>
-            <div class="px-star px-star--blue"                      style="top:9%;  left:20%;"></div>
-            <div class="px-dot px-dot--lg px-drift-a d1"            style="top:34%; left:6%;"></div>
-            <div class="px-tickline px-tickline--navy hidden lg:block" style="top:47%; left:3.5%; width:150px;"></div>
-            <div class="px-cross px-drift-c d2 hidden md:block"     style="top:60%; left:9%;"></div>
-
-            <!-- ── Upper-right quadrant ── -->
-            <div class="px-cluster px-cluster--lg px-cluster--navy px-cluster--d2 hidden md:block" style="top:10%; right:7%;"></div>
-            <div class="px-cluster px-cluster--cyan px-cluster--d1 hidden lg:block" style="top:30%; right:14%;"></div>
-            <div class="px-star px-star--lg"                        style="top:20%; right:20%;"></div>
-            <div class="px-star px-star--sm px-star--navy px-star--d2" style="top:44%; right:6%;"></div>
-            <div class="px-dot px-dot--xl px-dot--cyan px-drift-b"  style="top:6%;  right:30%;"></div>
-            <div class="px-dot px-drift-d d3 hidden md:block"       style="top:38%; right:9%;"></div>
-            <div class="px-tickline px-tickline--v px-tickline--cyan hidden lg:block" style="top:8%; right:4%; height:130px;"></div>
+            <span class="px-cluster hidden md:block"></span>
+            <span class="px-cluster px-cluster--sm px-cluster--cyan px-cluster--d1 hidden md:block" style="top:26%; left:12%;"></span>
+            <span class="px-star px-star--blue" style="top:9%; left:20%;"></span>
+            <span class="px-dot px-dot--lg px-drift-a d1" style="top:34%; left:6%;"></span>
+            <span class="px-tickline px-tickline--navy hidden lg:block" style="top:47%; left:3.5%; width:150px;"></span>
+            <span class="px-cross px-drift-c d2 hidden md:block" style="top:60%; left:9%;"></span>
+            <span class="px-cluster px-cluster--lg px-cluster--navy px-cluster--d2 hidden md:block" style="top:10%; right:7%;"></span>
+            <span class="px-cluster px-cluster--cyan px-cluster--d1 hidden lg:block" style="top:30%; right:14%;"></span>
+            <span class="px-star px-star--lg" style="top:20%; right:20%;"></span>
+            <span class="px-star px-star--sm px-star--navy px-star--d2" style="top:44%; right:6%;"></span>
+            <span class="px-dot px-dot--xl px-dot--cyan px-drift-b" style="top:6%; right:30%;"></span>
+            <span class="px-dot px-drift-d d3 hidden md:block" style="top:38%; right:9%;"></span>
+            <span class="px-tickline px-tickline--v px-tickline--cyan hidden lg:block" style="top:8%; right:4%; height:130px;"></span>
 
             <!-- ── Middle edges ── -->
-            <div class="px-cross px-cross--cyan px-drift-b d1 hidden md:block" style="top:52%; right:3.5%;"></div>
-            <div class="px-dot px-dot--navy px-drift-c d2 hidden md:block"     style="top:55%; left:3%;"></div>
+            <span class="px-cross px-cross--cyan px-drift-b d1 hidden md:block" style="top:52%; right:3.5%;"></span>
+            <span class="px-dot px-dot--navy px-drift-c d2 hidden md:block" style="top:55%; left:3%;"></span>
 
             <!-- ── Lower-left quadrant ── -->
-            <div class="px-cluster px-cluster--cyan px-cluster--sm hidden md:block" style="bottom:14%; left:7%;"></div>
-            <div class="px-star px-star--navy px-star--d1"          style="bottom:26%; left:15%;"></div>
-            <div class="px-dot px-dot--cyan px-drift-a d4"          style="bottom:8%;  left:20%;"></div>
-            <div class="px-dot px-drift-b d2 hidden md:block"       style="bottom:33%; left:4%;"></div>
-            <div class="px-tickline px-tickline--cyan hidden lg:block" style="bottom:6%; left:5%; width:170px;"></div>
+            <span class="px-cluster px-cluster--cyan px-cluster--sm hidden md:block" style="bottom:14%; left:7%;"></span>
+            <span class="px-star px-star--navy px-star--d1" style="bottom:26%; left:15%;"></span>
+            <span class="px-dot px-dot--cyan px-drift-a d4" style="bottom:8%; left:20%;"></span>
+            <span class="px-dot px-drift-b d2 hidden md:block" style="bottom:33%; left:4%;"></span>
+            <span class="px-tickline px-tickline--cyan hidden lg:block" style="bottom:6%; left:5%; width:170px;"></span>
 
             <!-- ── Lower-right quadrant ── -->
-            <div class="px-cluster px-cluster--d2 hidden md:block"  style="bottom:12%; right:8%;"></div>
-            <div class="px-cluster px-cluster--sm px-cluster--navy px-cluster--d1 hidden lg:block" style="bottom:28%; right:13%;"></div>
-            <div class="px-star px-star--blue px-star--d2"          style="bottom:20%; right:22%;"></div>
-            <div class="px-star px-star--sm"                        style="bottom:7%;  right:16%;"></div>
-            <div class="px-dot px-dot--lg px-drift-d d1"            style="bottom:38%; right:4%;"></div>
-            <div class="px-tickline px-tickline--navy hidden lg:block" style="bottom:16%; right:4%; width:120px;"></div>
+            <span class="px-cluster px-cluster--d2 hidden md:block" style="bottom:12%; right:8%;"></span>
+            <span class="px-cluster px-cluster--sm px-cluster--navy px-cluster--d1 hidden lg:block" style="bottom:28%; right:13%;"></span>
+            <span class="px-star px-star--blue px-star--d2" style="bottom:20%; right:22%;"></span>
+            <span class="px-star px-star--sm" style="bottom:7%; right:16%;"></span>
+            <span class="px-dot px-dot--lg px-drift-d d1" style="bottom:38%; right:4%;"></span>
+            <span class="px-tickline px-tickline--navy hidden lg:block" style="bottom:16%; right:4%; width:120px;"></span>
 
             <!-- Stepped stair motif: top-right landmark -->
             <span class="px-stair" style="top:0; right:72px; width:56px;">
@@ -52,12 +48,12 @@
             </span>
 
             <!-- Mobile: minimal ambient pixels, edges only -->
-            <div class="md:hidden">
-                <div class="px-dot px-dot--cyan px-drift-a"    style="top:10%; right:6%;"></div>
-                <div class="px-dot px-drift-c d2"              style="top:42%; left:4%;"></div>
-                <div class="px-star px-star--blue px-star--d1" style="bottom:18%; right:8%;"></div>
-                <div class="px-cluster px-cluster--sm"         style="bottom:6%; left:5%;"></div>
-            </div>
+            <span class="md:hidden block">
+                <span class="px-dot px-dot--cyan px-drift-a" style="top:10%; right:6%;"></span>
+                <span class="px-dot px-drift-c d2" style="top:42%; left:4%;"></span>
+                <span class="px-star px-star--blue px-star--d1" style="bottom:18%; right:8%;"></span>
+                <span class="px-cluster px-cluster--sm" style="bottom:6%; left:5%;"></span>
+            </span>
         </aside>
 
         <!-- ═══ Hero content: intentionally constrained composition ═══ -->
