@@ -552,3 +552,317 @@ pcs-logo[animate] .pcs-pixel {
         opacity: 1 !important;
     }
 }
+/* ─── 16. MODAL SYSTEM ───────────────────────────────────── */
+.org-modal-trigger {
+    transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.org-modal-trigger:active {
+    transform: translateY(1px);
+}
+.group:hover .org-modal-trigger {
+    transform: translateX(4px);
+}
+
+.pcs-dialog {
+    display: none;
+}
+.pcs-dialog[open] {
+    display: block;
+}
+
+/* Base backdrop styling */
+.pcs-dialog::backdrop {
+    background-color: rgba(2, 35, 64, 0.72);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.pcs-dialog.is-open::backdrop {
+    opacity: 1;
+}
+
+/* Specific styling for full chart backdrop (darker) */
+#full-chart-modal::backdrop {
+    background-color: rgba(2, 15, 30, 0.95);
+}
+
+/* The fixed presentation layer handles the centering and pointer events */
+.pcs-dialog-presentation {
+    pointer-events: none; /* Let clicks pass through to backdrop */
+}
+
+/* Modal animation */
+.pcs-dialog-panel {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    transition: opacity 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+    .pcs-dialog-panel {
+        transform: translateY(16px) scale(0.98);
+    }
+}
+
+.pcs-dialog.is-open .pcs-dialog-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 40ms, 40ms;
+}
+
+/* Chart Entrance Animation */
+#modal-div-chart {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.pcs-dialog.is-open #modal-div-chart {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 100ms, 100ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pcs-dialog-panel,
+    .pcs-dialog.is-open .pcs-dialog-panel,
+    #modal-div-chart,
+    .pcs-dialog.is-open #modal-div-chart {
+        transform: none !important;
+        transition-duration: 0.1s !important;
+        transition-delay: 0s !important;
+    }
+    .org-modal-trigger,
+    .group:hover .org-modal-trigger {
+        transform: none !important;
+    }
+}
+
+/* ─── 17. HERO ATMOSPHERE EXTRAS ─────────────────────────── */
+
+/*
+ * px-cross — a small +/crosshair technical mark.
+ * Built from two 1px lines via pseudo-elements. No extra DOM.
+ */
+.px-cross {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    opacity: 0.14;
+}
+.px-cross::before,
+.px-cross::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-blue);
+}
+.px-cross::before {
+    top: 50%; left: 0;
+    width: 100%; height: 1px;
+    transform: translateY(-50%);
+}
+.px-cross::after {
+    left: 50%; top: 0;
+    height: 100%; width: 1px;
+    transform: translateX(-50%);
+}
+.px-cross--cyan::before,
+.px-cross--cyan::after { background-color: var(--color-cyan); }
+
+/* ─── 18. ORGANIZATION SECTION SYSTEM ────────────────────── */
+
+/*
+ * Background: subtle grid + side rail marks via pseudo-elements.
+ */
+.section-atm--org {
+    background-image:
+        linear-gradient(var(--color-grid-faint) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-grid-faint) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Left-side vertical rule */
+.section-atm--org::before {
+    content: '';
+    position: absolute;
+    top: 10%; bottom: 10%;
+    left: 28px;
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-blue) 0,
+        var(--color-blue) 8px,
+        transparent 8px,
+        transparent 16px
+    );
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+/* Right-side vertical rule */
+.section-atm--org::after {
+    content: '';
+    position: absolute;
+    top: 10%; bottom: 10%;
+    right: 28px;
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--color-cyan) 0,
+        var(--color-cyan) 8px,
+        transparent 8px,
+        transparent 16px
+    );
+    opacity: 0.07;
+    pointer-events: none;
+}
+
+/* ─── Decorative logo artifacts ─────────────────────────── */
+
+.org-artifacts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.org-artifact {
+    position: absolute;
+    object-fit: contain;
+    opacity: 0.55;
+    filter: none; /* no blur — keep crisp */
+    transition: opacity 0.3s ease;
+}
+
+/* Tux: upper-left, visible from md+ */
+.org-artifact--tux {
+    width: clamp(48px, 6vw, 88px);
+    top: 6%;
+    left: 3%;
+    display: none;
+}
+@media (min-width: 768px) { .org-artifact--tux { display: block; } }
+
+/* Gopher: lower-right */
+.org-artifact--gopher {
+    width: clamp(44px, 5vw, 76px);
+    bottom: 8%;
+    right: 4%;
+    display: none;
+}
+@media (min-width: 768px) { .org-artifact--gopher { display: block; } }
+
+/* Photoshop-r: upper-right, only on large screens */
+.org-artifact--photoshop {
+    width: clamp(40px, 4.5vw, 68px);
+    top: 8%;
+    right: 3%;
+    display: none;
+}
+@media (min-width: 1024px) { .org-artifact--photoshop { display: block; } }
+
+/* ─── L-bracket corner marks (org-mark) ─────────────────── */
+
+.org-mark {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    pointer-events: none;
+    opacity: 0.12;
+}
+.org-mark--tl {
+    top: 16px; left: 16px;
+    border-top: 3px solid var(--color-blue);
+    border-left: 3px solid var(--color-blue);
+}
+.org-mark--br {
+    bottom: 16px; right: 16px;
+    border-bottom: 3px solid var(--color-cyan);
+    border-right: 3px solid var(--color-cyan);
+}
+
+/* ─── HUD corner labels ──────────────────────────────────── */
+
+.org-chart-frame {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 0 0;
+}
+
+.org-hud {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    opacity: 0.45;
+    pointer-events: none;
+}
+.org-hud--tl { top: 6px;  left: 0;  }
+.org-hud--tr { top: 6px;  right: 0; }
+.org-hud--bl { bottom: -20px; left: 0; }
+
+/* ─── 19. NYAN PCS COMPANION ─────────────────────────────── */
+
+.nyan-companion {
+    position: fixed;
+    /* Start off-screen left, JS will move via transform */
+    bottom: 18%;
+    left: 0;
+    width: 120px;
+    height: auto;
+    pointer-events: none;
+    /* Below modals but above page content */
+    z-index: 40;
+    will-change: transform;
+    /* CSS bobbing animation layered on top of JS scroll tracking */
+    animation: nyan-bob 2.4s ease-in-out infinite;
+    /* Hide on very small screens */
+    display: none;
+}
+
+/* Show from sm+ */
+@media (min-width: 480px) {
+    .nyan-companion { display: block; }
+}
+@media (min-width: 768px) {
+    .nyan-companion { width: 96px; }
+}
+@media (min-width: 1024px) {
+    .nyan-companion { width: 120px; }
+}
+
+@keyframes nyan-bob {
+    0%,  100% { transform: var(--nyan-tx, translate3d(-140px, 0, 0)) translateY(0px);   }
+    50%        { transform: var(--nyan-tx, translate3d(-140px, 0, 0)) translateY(-8px);  }
+}
+
+/* ─── 20. Z-INDEX SCALE ──────────────────────────────────── */
+/*
+ * --z-bg:       0   (section backgrounds, pseudo-elements)
+ * --z-deco:     1   (decorative elements: artifacts, particles)
+ * --z-content:  10  (actual section content)
+ * --z-ui:       20  (header, interactive controls)
+ * --z-nyan:     40  (nyan companion)
+ * --z-modal:    50  (modals and backdrops)
+ */
+
+/* Ensure modals sit above nyan */
+.pcs-dialog { z-index: 50 !important; }
+
+/* ─── REDUCED MOTION — append to existing reduced-motion block ─── */
+@media (prefers-reduced-motion: reduce) {
+    .nyan-companion {
+        animation: none !important;
+        /* Keep it stationary in a corner if JS relies on transforms */
+    }
+    .org-artifact {
+        animation: none !important;
+    }
+    .px-cross {
+        animation: none !important;
+    }
+}

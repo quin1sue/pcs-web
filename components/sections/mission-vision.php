@@ -17,7 +17,7 @@
             </li>
 
             <!-- Vision Card -->
-            <li class="pixel-panel p-8 md:p-10 relative bg-slate-900 text-white reveal transform md:rotate-1 md:translate-y-8">
+            <li class="pixel-panel p-8 md:p-10 relative bg-blue-900 text-white reveal transform md:rotate-1 md:translate-y-8">
                 <header class="absolute -top-6 right-8 bg-white text-slate-900 font-black px-4 py-2 pixel-border text-xl uppercase">
                     <h2>Vision</h2>
                 </header>

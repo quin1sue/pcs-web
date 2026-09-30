@@ -11,6 +11,7 @@ require __DIR__ . '/data/site-data.php';
     <main>
         <?php require __DIR__ . '/components/sections/hero.php'; ?>
         <?php require __DIR__ . '/components/sections/mission-vision.php'; ?>
+        <?php require __DIR__ . '/components/sections/organization.php'; ?>
         <?php require __DIR__ . '/components/sections/divisions.php'; ?>
         <?php require __DIR__ . '/components/sections/experience.php'; ?>
         <?php require __DIR__ . '/components/sections/showcase.php'; ?>
@@ -18,6 +19,15 @@ require __DIR__ . '/data/site-data.php';
     </main>
 
     <?php require __DIR__ . '/components/layout/footer.php'; ?>
+
+    <?php require __DIR__ . '/components/ui/division-org-modal.php'; ?>
+    <!-- Nyan PCS companion — decorative floating mascot, pointer-events:none -->
+    <img id="nyan-pcs"
+         src="public/assets/images/logo/nyan-pcs-extended.png"
+         alt=""
+         class="nyan-companion"
+         aria-hidden="true"
+         loading="lazy">
 
     <script src="public/assets/js/main.js"></script>
 </body>

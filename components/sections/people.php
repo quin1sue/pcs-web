@@ -5,7 +5,7 @@
                 Our People
             </h2>
             <p class="text-lg text-slate-600 max-w-2xl font-medium border-l-4 border-slate-900 pl-4">
-                The leaders driving the Pixel Code & Society forward.
+                The leaders driving the Pixel & Code Society forward.
             </p>
         </div>
 

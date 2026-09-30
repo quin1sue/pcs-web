@@ -1,8 +1,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pixel Code & Society - A student community building technology, exploring ideas, and connecting curious people.">
-    <title>Pixel Code & Society</title>
+    <meta name="description" content="Pixel & Code Society - Where creativity meets technology.">
+    <title>Pixel & Code Society</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

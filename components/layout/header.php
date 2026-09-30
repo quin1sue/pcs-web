@@ -4,10 +4,10 @@
 
             <!-- Brand / Logo -->
             <div class="flex-shrink-0">
-                <a href="#" class="flex items-center gap-3" aria-label="Pixel Code &amp; Society — Home">
+                <a href="#" class="flex items-center gap-3" aria-label="Pixel &amp; Code Society — Home">
                     <img
                         src="public/assets/images/logo/pcs-logo.png"
-                        alt="Pixel Code &amp; Society"
+                        alt="Pixel &amp; Code Society"
                         class="site-logo-img"
                         onerror="this.style.display='none'">
                     <span class="font-black text-sm tracking-widest text-slate-900 uppercase hidden sm:block" aria-hidden="true">Pixel & Code Society</span>
@@ -16,7 +16,6 @@
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
-                <a href="#identity" class="text-xs font-bold text-slate-700 hover:text-blue-600 uppercase tracking-wider px-3 py-2 hover:bg-blue-50 transition-colors">About</a>
                 <a href="#discover" class="text-xs font-bold text-slate-700 hover:text-blue-600 uppercase tracking-wider px-3 py-2 hover:bg-blue-50 transition-colors">Divisions</a>
                 <a href="#people" class="text-xs font-bold text-slate-700 hover:text-blue-600 uppercase tracking-wider px-3 py-2 hover:bg-blue-50 transition-colors">People</a>
                 <a href="#experience" class="text-xs font-bold text-slate-700 hover:text-blue-600 uppercase tracking-wider px-3 py-2 hover:bg-blue-50 transition-colors">Journey</a>
